@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">final_project_csci_4020</string>
+    <string-array name="usernames">
+        <item>Kiosk</item>
+        <item>SalesRep</item>
+        <item>Manager</item>
+    </string-array>
 </resources>
