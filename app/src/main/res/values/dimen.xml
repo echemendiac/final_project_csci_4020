@@ -4,7 +4,7 @@
     <dimen name="menu_buttons_margin">30dp</dimen>
     <dimen name="boxHeight">50sp</dimen>
     <dimen name="boxWidth">400dp</dimen>
-    <dimen name="spacing">10dp</dimen>
+    <dimen name="spacing">20dp</dimen>
     <dimen name="textSize">40sp</dimen>
     <dimen name="buttonTextSize">30sp</dimen>
 

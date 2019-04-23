@@ -1,6 +1,7 @@
 package com.example.chris.final_project_csci_4020;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -47,16 +49,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     };
 
-    User user;
-
+    User user; //Variable used for the app mode
+    Button createEstimate_b;
+    Button viewEstimate_b;
+    Button viewWebsite_b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
-        user = User.ERROR;
+        showLoginScreen(); //show the login screen after app is created
 
-        //---- Initializing varaibles ----//
+        //---- Initialize Varaibles ----//
+        createEstimate_b = findViewById(R.id.createEstimate_b);
+        viewEstimate_b = findViewById(R.id.viewEstimate_b);
+        viewWebsite_b = findViewById(R.id.viewWebsite_b);
+
+        //Hide Buttons
+        createEstimate_b.setVisibility(View.INVISIBLE);
+        viewEstimate_b.setVisibility(View.INVISIBLE);
+        viewWebsite_b.setVisibility(View.INVISIBLE);
+
+        //Setup OnClickListners
+        createEstimate_b.setOnClickListener(this);
+        viewEstimate_b.setOnClickListener(this);
+        viewWebsite_b.setOnClickListener(this);
+
+        user = User.KIOSK;
+
 
         //Setup Spinner
         Spinner username_s = findViewById(R.id.username_s);
@@ -69,13 +89,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         username_s.setOnItemSelectedListener(new UsernameListner());
 
 
+        //This enables the user to hit enter or done in the password field intead of having to hit
+        //login
         ((EditText)findViewById(R.id.password_et)).setOnEditorActionListener(
                 new EditText.OnEditorActionListener() {
                     @Override
                     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                         // Identifier of the action. This will be either the identifier you supplied,
                         // or EditorInfo.IME_NULL if being called due to the enter key being pressed.
-                        if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+
+//                        Log.i("PassWord KeyEvent","Keycode is: " + event.getKeyCode());
+
+                        //Added result so that the done key on the soft keypad would work
+                        int result = actionId & EditorInfo.IME_MASK_ACTION;
+                        Log.i("Password", "the result is: " + result);
+                        if (result == 6 || event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
                             login(v);
                             return true;
                         }
@@ -94,21 +122,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void login(View v){
         Log.i("login","I have been called");
 
-        Toast toast = Toast.makeText(MainActivity.this,"ERROR; Try to Login again",Toast.LENGTH_LONG);
-        TextView textView = new TextView(MainActivity.this);
-        toast.setView(textView);
+        if(v.getId() != R.id.logout_b) {
 
-        EditText et = findViewById(R.id.password_et);
+            Toast toast = Toast.makeText(MainActivity.this, "ERROR; Try to Login again", Toast.LENGTH_LONG);
+            TextView textView = new TextView(MainActivity.this);
+            toast.setView(textView);
+            textView.setText("Error: Try to Login again");
+            textView.setBackgroundColor(Color.YELLOW);
+            textView.setTextColor(Color.RED);
+            textView.setTextSize(30);
+            textView.setPadding(20,20,20,20);
 
-        if(user.getPassword().equals(et.getText().toString())) {
-            isLoginSession = true;
-            textView.setText("Login succesful");
+
+
+            EditText et = findViewById(R.id.password_et);
+
+            if (user.getPassword().equals(et.getText().toString())) {
+                isLoginSession = true;
+                textView.setText("Login succesful");
+            } else {
+                isLoginSession = false;
+                textView.setText("Password is INCORRECT!!");
+            }
+            toast.show();
+            Log.i("login", "Login: " + isLoginSession);
+            showMenuButons();
         }else{
             isLoginSession = false;
-            textView.setText("PassWord is INCORRECT!!");
         }
-        toast.show();
-        Log.i("login","Login: " + isLoginSession);
+
         showLoginScreen();
 
     }
@@ -144,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     public void clearText(View v){
         Log.i("clearText","I have been called");
-        TextView tv = findViewById(v.getId());
+        EditText tv = findViewById(v.getId());
         tv.setText("");
     }
 
@@ -158,6 +200,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.i("showLoginScreen", "Login screen should be visible");
         }else{
             loginScreen.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void showMenuButons(){
+        Log.i("showMenuButtons", "User mode is " + user.toString());
+        switch(user){
+            case KIOSK:
+                createEstimate_b.setVisibility(View.VISIBLE);
+                viewEstimate_b.setVisibility(View.INVISIBLE);
+                viewWebsite_b.setVisibility(View.INVISIBLE);
+                break;
+            case SALES:
+                createEstimate_b.setVisibility(View.VISIBLE);
+                viewEstimate_b.setVisibility(View.VISIBLE);
+                viewWebsite_b.setVisibility(View.VISIBLE);
+                break;
+            case MANAGE:
+                createEstimate_b.setVisibility(View.INVISIBLE);
+                viewEstimate_b.setVisibility(View.VISIBLE);
+                viewWebsite_b.setVisibility(View.INVISIBLE);
+                break;
+            default:
+                Log.i("showMenuButtons", "No mode selected");
+                createEstimate_b.setVisibility(View.INVISIBLE);
+                viewEstimate_b.setVisibility(View.INVISIBLE);
+                viewWebsite_b.setVisibility(View.INVISIBLE);
         }
     }
 
