@@ -5,4 +5,5 @@
         <item>SalesRep</item>
         <item>Manager</item>
     </string-array>
+    <string name="title_activity_create_estimate">CreateEstimate</string>
 </resources>

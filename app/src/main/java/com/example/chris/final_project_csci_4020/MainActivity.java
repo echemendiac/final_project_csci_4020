@@ -26,18 +26,81 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
+        Intent intent = null;
+        switch (v.getId()){
+            case R.id.createEstimate_b:
+                intent = new Intent(MainActivity.this,CreateEstimate.class);
+                break;
+            case R.id.viewEstimate_b:
+                break;
+            case R.id.viewWebsite_b:
+                break;
+            default:
+                Log.i("Onclick","Unathorized button was clicked.");
+        }
+        //Create a Bundle to hold information
+        Bundle bundle = new Bundle();
+
+        //Store the User Mode in the bundle
+        bundle.putInt("USER_MODE", user.getBundleInt());
+
+        //Attach the bundle to intent
+        intent.putExtras(bundle);
+
+        if(intent != null)
+            //Start the new activity depending on which button was clicked
+            startActivity(intent);
+        else{
+            Log.i("Onclick", "Intent is null");
+        }
+
     }
     private boolean isLoginSession = false; //Boolean for if the user is logged in
 
 
     // Holds user information and permissions
-    static enum User {
+    public static enum User {
         KIOSK, SALES, MANAGE, ERROR;
+
+        public User getEnum(int type){
+            switch (type){
+                case 0:
+                    return User.KIOSK;
+                case 1:
+                    return User.SALES;
+                case 2:
+                    return User.MANAGE;
+                case -999:
+                    return User.ERROR;
+                default:
+                    return User.ERROR;
+            }
+        }
+
+
+        /**
+         * This returns an int for a bundle to package.
+         * When next activity is called. It can create this object with that int
+         * @return
+         */
+        public int getBundleInt(){
+            switch (this) {
+                case KIOSK:
+                    return 0;
+                case SALES:
+                    return 1;
+                case MANAGE:
+                    return 2;
+                case ERROR:
+                    return -999;
+                default:
+                    return -999;
+            }
+        }
 
         /**
          *  returns the password depending on User selected
          */
-
         public String getPassword(){
             switch(this){
                 case KIOSK: return "cup1";
