@@ -54,6 +54,11 @@
         <item>yes</item>
         <item>no</item>
     </string-array>
+    <string-array name="sidingType">
+        <item>Vinyl</item>
+        <item>Wood</item>
+        <item>Metal</item>
+    </string-array>
     <string name="title_activity_create_estimate">Create Estimates</string>
 
 </resources>

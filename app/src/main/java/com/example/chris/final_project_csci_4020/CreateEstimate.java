@@ -22,8 +22,9 @@ public class CreateEstimate extends AppCompatActivity {
                 sidingColor_s,
                 gutterSize_s,
                 gutterColor_s,
-                downspoutSize_s;
-    final int NUM_LINES = 5;
+                downspoutSize_s,
+                downspoutColor_s;
+    final int NUM_LINES = 17;
 
     Bundle bundle; //store information passed from the first activity
     MainActivity.User user;
@@ -52,7 +53,13 @@ public class CreateEstimate extends AppCompatActivity {
         //---- Setting Up Spinners ----//
         setupSpinner(roofType_s, R.id.roofType_s, R.array.roofType);
         setupSpinner(roofColor_s,R.id.roofColor_s,R.array.shingleRoofColors);
-       // setupSpinner(roofColor_s,R.id.roofColor_s,R.array.shingleRoofColors);
+        setupSpinner(pipeFlahsingColor_s, R.id.pipeFlashing_s, R.array.gutterColors);
+        setupSpinner(sidingType_s, R.id.sidingType_et,R.array.sidingType);
+        setupSpinner(sidingColor_s,R.id.sidingColor_s,R.array.gutterColors);
+        setupSpinner(gutterSize_s, R.id.gutterType_s, R.array.gutterSizes);
+        setupSpinner(gutterColor_s, R.id.gutterColor_s, R.array.gutterColors);
+        setupSpinner(downspoutSize_s, R.id.downspoutType_s, R.array.downspoutSize);
+        setupSpinner(downspoutColor_s, R.id.downspoutColor_s, R.array.gutterColors);
 
 
 
