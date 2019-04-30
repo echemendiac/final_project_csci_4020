@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">final_project_csci_4020</string>
+    <string name="app_name">All Dry Estimates</string>
     <string-array name="usernames">
         <item>Kiosk</item>
         <item>SalesRep</item>
@@ -36,6 +36,12 @@
         <item>brown</item>
         <item>green</item>
     </string-array>
+    <string-array name="roofType">
+        <item>Metal</item>
+        <item>3-tab</item>
+        <item>dimensional</item>
+        <item>duration</item>
+    </string-array>
     <string-array name="gutterSizes">
         <item>5 in</item>
         <item>6 in</item>
@@ -48,6 +54,6 @@
         <item>yes</item>
         <item>no</item>
     </string-array>
-    <string name="title_activity_create_estimate">CreateEstimate</string>
+    <string name="title_activity_create_estimate">Create Estimates</string>
 
 </resources>

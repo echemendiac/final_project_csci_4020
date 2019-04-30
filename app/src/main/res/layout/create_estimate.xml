@@ -13,7 +13,36 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:gravity="center"
+                android:padding="@dimen/spacing">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/boxHeight"
+                    android:background="@drawable/button"
+                    android:text="Roof Type:"
+                    android:textSize="@dimen/textSize"
+                    android:textColor="@color/textColor"/>
+                <Spinner
+                    android:layout_height="@dimen/boxHeight"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/roofType_s"
+                    android:background="@drawable/button"
+                    android:textSize="@dimen/textSize"
+                    android:gravity="left"
+                    />
+                <Spinner
+                    android:layout_height="@dimen/boxHeight"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/roofColor_s"
+                    android:background="@drawable/button"
+                    android:textSize="@dimen/textSize"
+                    android:gravity="left"
+                    />
 
             </LinearLayout>
     </LinearLayout>
