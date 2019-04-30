@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Log.i("Onclick", "I was called by" + v.toString());
 
         Intent intent = null;
         switch (v.getId()){

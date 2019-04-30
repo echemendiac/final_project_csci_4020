@@ -5,5 +5,49 @@
         <item>SalesRep</item>
         <item>Manager</item>
     </string-array>
+
+    <!-- Estimate form string arrays here -->
+    <!-- roofType_dd,
+                pipeFlahsingColor_dd,
+                sidingType_dd,
+                sidingColor_dd,
+                gutterSize_dd,
+                gutterColor_dd,
+                downspoutSize_dd;
+                -->
+    <string-array name="gutterColors">
+        <item>blue</item>
+        <item>red</item>
+        <item>yellow</item>
+        <item>white</item>
+        <item>tan</item>
+        <item>beige</item>
+        <item>brown</item>
+        <item>green</item>
+    </string-array>
+    <string-array name="shingleRoofColors">
+        <item>Weatherwood</item>
+        <item>blue</item>
+        <item>red</item>
+        <item>yellow</item>
+        <item>white</item>
+        <item>tan</item>
+        <item>beige</item>
+        <item>brown</item>
+        <item>green</item>
+    </string-array>
+    <string-array name="gutterSizes">
+        <item>5 in</item>
+        <item>6 in</item>
+    </string-array>
+    <string-array name="downspoutSize">
+        <item>2 x 3</item>
+        <item>4 x 3</item>
+    </string-array>
+    <string-array name="yesNo">
+        <item>yes</item>
+        <item>no</item>
+    </string-array>
     <string name="title_activity_create_estimate">CreateEstimate</string>
+
 </resources>
