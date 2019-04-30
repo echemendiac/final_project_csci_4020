@@ -3,7 +3,10 @@
     <color name="colorPrimary">#00007E</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#ffffff</color>
-    <color name="hintColor">#777777</color>
+    <color name="hintColor">#88888888</color>
     <color name="textColor">#000000</color>
+    <color name="editColor">#0000e6</color>
+    <color name="remove">#e60000</color>
+    <color name="add">#33cc33</color>
     <color name="lightBackground">#ffffff</color>
 </resources>

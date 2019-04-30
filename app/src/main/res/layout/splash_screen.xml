@@ -34,6 +34,7 @@
                 android:textSize="@dimen/buttonTextSize"
                 android:textColor="@color/textColor"
                 android:layout_marginBottom="@dimen/spacing"
+                android:gravity="center"
                 android:id="@+id/createEstimate_b"
                 android:text="Create Estimate"
                 />
@@ -44,6 +45,7 @@
                 android:textSize="@dimen/buttonTextSize"
                 android:textColor="@color/textColor"
                 android:layout_marginBottom="@dimen/spacing"
+                android:gravity="center"
                 android:id="@+id/viewEstimate_b"
                 android:text="View Estimates"
                 />
@@ -54,6 +56,7 @@
                 android:textSize="@dimen/buttonTextSize"
                 android:textColor="@color/textColor"
                 android:layout_marginBottom="@dimen/spacing"
+                android:gravity="center"
                 android:id="@+id/viewWebsite_b"
                 android:text="View Website"
                 />
@@ -68,6 +71,7 @@
             android:textSize="@dimen/buttonTextSize"
             android:textColor="@color/textColor"
             android:layout_margin="@dimen/spacing"
+            android:gravity="center"
             android:id="@+id/logout_b"
             android:text="Logout"
             android:onClick="login"

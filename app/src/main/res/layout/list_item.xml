@@ -20,6 +20,5 @@
     android:layout_height="wrap_content"
     android:textColor="@android:color/black"
     android:textSize="@dimen/textSize"
-    android:text="username"
     android:gravity="left"
     android:minHeight="?android:attr/listPreferredItemHeightSmall" />
