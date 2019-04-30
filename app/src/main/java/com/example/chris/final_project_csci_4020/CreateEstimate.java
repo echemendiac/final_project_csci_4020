@@ -1,11 +1,13 @@
 package com.example.chris.final_project_csci_4020;
 
 import android.content.Context;
+import android.hardware.camera2.TotalCaptureResult;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,6 +25,8 @@ public class CreateEstimate extends AppCompatActivity {
                 downspoutSize_s;
     final int NUM_LINES = 5;
 
+    Bundle bundle; //store information passed from the first activity
+    MainActivity.User user;
 
 
 
@@ -30,6 +34,18 @@ public class CreateEstimate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_estimate);
+
+        // Getting the intent that started and pulling out the key
+        bundle = getIntent().getExtras();
+        int i = bundle.getInt("USER_MODE");
+        Log.i("OnCreate", "The User mode is: "+ i);
+
+        user = MainActivity.User.ERROR;
+        //Then using a method from user to set itself to the correct value
+        user = user.getEnum(i);
+
+        //Check mode
+        checkMode();
 
         //Spinneers act like drop downs
 
@@ -79,6 +95,18 @@ public class CreateEstimate extends AppCompatActivity {
                 ll.setVisibility(View.INVISIBLE);
             }
         }
+    }
+
+    /**
+     * Check the mode that was passed with the bundle. Then disable/enable features for ot
+     */
+    private void checkMode(){
+        if (user == user.KIOSK){
+            findViewById(R.id.estimateForm_ll).setVisibility(View.INVISIBLE);
+        }else if (user != user.SALES){
+            Log.i("Mode Check", "Wrong mode. In mode: " + user.toString());
+        }else
+            findViewById(R.id.estimateForm_ll).setVisibility(View.VISIBLE);
     }
 
 }

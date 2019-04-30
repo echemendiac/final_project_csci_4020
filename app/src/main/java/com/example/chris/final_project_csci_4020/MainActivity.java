@@ -1,7 +1,10 @@
 package com.example.chris.final_project_csci_4020;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -23,6 +27,50 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
 
+    public void logoutSure(View v){
+        Log.i("Alert Dialogue Button","Alert Dialogue was called");
+        //setup a textView to be used inside the alert dialog
+        String titleString = "Logout";
+        TextView textView = new TextView(MainActivity.this);
+        textView.setTextSize(40);
+        textView.setTypeface(Typeface.DEFAULT_BOLD);
+        textView.setTextColor(Color.YELLOW);
+        textView.setPadding(40,40,40,40);
+        textView.setText("Logout, Are you sure?");
+
+        //Allow the text view to scroll by setting it as a child of a scrollview
+//        ScrollView scrollView = new ScrollView(v.getContext());
+//        scrollView.addView(textView);
+
+
+        //Create alert dialog and set up attributes
+        new AlertDialog.Builder(MainActivity.this)
+                //set the message of the alert dialog to be a view
+                .setView(textView)
+//                .setTitle(titleString)
+
+
+                .setPositiveButton(android.R.string.yes
+                        , new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                isLoginSession = false;
+                                showLoginScreen();
+                            }
+                        })
+                .setNegativeButton(android.R.string.no
+                        , new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                 //Nothing should happen except the window screen closes.
+                            }
+                        })
+
+                .show();
+    }
+    @Override
+    public void onBackPressed(){
+        logoutSure(null);
+    }
     @Override
     public void onClick(View v) {
         Log.i("Onclick", "I was called by" + v.toString());
@@ -62,6 +110,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Holds user information and permissions
     public static enum User {
         KIOSK, SALES, MANAGE, ERROR;
+
+
 
         public User getEnum(int type){
             switch (type){

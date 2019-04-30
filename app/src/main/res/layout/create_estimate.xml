@@ -6,79 +6,251 @@
     android:layout_height="match_parent"
     android:background="@color/lightBackground">
     <LinearLayout
-        android:id="@+id/formll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/lightBackground">
+        android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/customerInfo_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/textSize"
             android:text="Estimate Form"
+            android:textStyle="bold"
             android:layout_margin="@dimen/spacing"
             android:layout_gravity="center"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="4"
+                android:weightSum="2"
                 android:gravity="center"
                 android:padding="@dimen/spacing">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                <EditText
                     android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight=".75"
+                    android:id="@+id/ownerName_et"
                     android:background="@drawable/formbox"
-                    android:text="Roof:"
-                    android:textStyle="bold"
                     android:textSize="@dimen/textSize"
-                    android:textColor="@color/textColor"/>
-                <Spinner
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/roofType_s"
-                    android:background="@drawable/spinner"
-                    android:textSize="@dimen/textSize"
-                    android:gravity="left"
-                    />
-                <Spinner
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/roofColor_s"
-                    android:background="@drawable/spinner"
-                    android:textSize="@dimen/textSize"
+                    android:textColor="@color/editColor"
+                    android:hint="Full Name"
+                    android:textColorHint="@color/hintColor"
                     android:gravity="center"
+                    android:layout_marginRight="@dimen/spacing"
                     />
                 <EditText
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/roof_Quatity"
-                    android:hint="Squares"
-                    android:textColorHint="@color/hintColor"
-                    android:textColor="@color/editColor"
-                    android:textSize="@dimen/textSize"
+                    android:layout_weight="1.25"
+                    android:id="@+id/email_et"
                     android:background="@drawable/formbox"
-                    android:gravity="center"
-                    android:inputType="number"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/removeb1"
-                    android:textColor="@color/textColor"
                     android:textSize="@dimen/textSize"
-                    android:background="@drawable/removebutton"
+                    android:textColor="@color/editColor"
+                    android:hint="address@email.com"
+                    android:textColorHint="@color/hintColor"
                     android:gravity="center"
-                    android:text="-"
-                    android:layout_marginLeft="@dimen/spacing"
-                    android:onClick="removeLine"/>
-
+                    android:inputType="textEmailAddress"
+                    />
 
             </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:gravity="center"
+            android:padding="@dimen/spacing">
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1.25"
+                android:id="@+id/street_et"
+                android:background="@drawable/formbox"
+                android:textSize="@dimen/textSize"
+                android:textColor="@color/editColor"
+                android:hint="Street Address"
+                android:textColorHint="@color/hintColor"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/spacing"
+                android:inputType="textPostalAddress"
+                />
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".74"
+                android:id="@+id/phoneNum_et"
+                android:background="@drawable/formbox"
+                android:textSize="@dimen/textSize"
+                android:textColor="@color/editColor"
+                android:hint="(555) 555-555"
+                android:textColorHint="@color/hintColor"
+                android:gravity="center"
+                android:inputType="phone"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:gravity="center"
+            android:padding="@dimen/spacing">
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1.0"
+                android:id="@+id/city_et"
+                android:background="@drawable/formbox"
+                android:textSize="@dimen/textSize"
+                android:textColor="@color/editColor"
+                android:hint="City"
+                android:textColorHint="@color/hintColor"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/spacing"
+                />
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:id="@+id/state_et"
+                android:background="@drawable/formbox"
+                android:textSize="@dimen/textSize"
+                android:textColor="@color/editColor"
+                android:hint="state"
+                android:textColorHint="@color/hintColor"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/spacing"
+                />
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/zipcode_et"
+                android:background="@drawable/formbox"
+                android:textSize="@dimen/textSize"
+                android:textColor="@color/editColor"
+                android:hint="Zip Code"
+                android:textColorHint="@color/hintColor"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </LinearLayout>
+        <!-- End Customer Info -->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="@dimen/spacing"
+            android:layout_marginTop="@dimen/spacing"/>
+    <LinearLayout
+        android:id="@+id/estimateForm_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/formll1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
+            android:gravity="center"
+            android:padding="@dimen/spacing">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/formbox"
+                android:text="Roof:"
+                android:textStyle="bold"
+                android:textSize="@dimen/textSize"
+                android:textColor="@color/textColor"/>
+            <Spinner
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/roofType_s"
+                android:background="@drawable/spinner"
+                android:textSize="@dimen/textSize"
+                android:gravity="left"
+                />
+            <Spinner
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/roofColor_s"
+                android:background="@drawable/spinner"
+                android:textSize="@dimen/textSize"
+                android:gravity="center"
+                />
+
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/roof_Quatity"
+                android:hint="Squares"
+                android:textColorHint="@color/hintColor"
+                android:textColor="@color/editColor"
+                android:textSize="@dimen/textSize"
+                android:background="@drawable/formbox"
+                android:gravity="center"
+                android:inputType="number"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/removeb1"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textSize"
+                android:background="@drawable/removebutton"
+                android:gravity="center"
+                android:text="-"
+                android:layout_marginLeft="@dimen/spacing"
+                android:onClick="removeLine"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/formll2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
+            android:gravity="center"
+            android:padding="@dimen/spacing">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/formbox"
+                android:text="Tear Off:"
+                android:textStyle="bold"
+                android:textSize="@dimen/textSize"
+                android:textColor="@color/textColor"/>
+            <CheckBox
+                android:layout_width="@dimen/boxWidth"
+                android:layout_height="@dimen/boxHeight"
+                android:textSize="@dimen/textSize"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/removeb2"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textSize"
+                android:background="@drawable/removebutton"
+                android:gravity="center"
+                android:text="-"
+                android:layout_marginLeft="@dimen/spacing"
+                android:onClick="removeLine"/>
+        </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>
