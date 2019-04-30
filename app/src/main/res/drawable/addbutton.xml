@@ -8,7 +8,7 @@
             <item>
                 <shape xmlns:android="http://schemas.android.com/apk/res/android">
                     android:shape="rectangle" >
-                    <solid android:color="@color/remove" />
+                    <solid android:color="@color/add" />
                     <padding
                         android:bottom="@dimen/buttonSpacing"
                         android:top="@dimen/buttonSpacing"
@@ -29,7 +29,7 @@
 
                 <shape xmlns:android="http://schemas.android.com/apk/res/android">
                     android:shape="rectangle" >
-                    <solid android:color="@color/remove" />
+                    <solid android:color="@color/add" />
                     <padding
                         android:bottom="@dimen/buttonSpacing"
                         android:top="@dimen/buttonSpacing"

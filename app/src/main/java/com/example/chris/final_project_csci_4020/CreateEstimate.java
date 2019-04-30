@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 public class CreateEstimate extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class CreateEstimate extends AppCompatActivity {
                 gutterSize_s,
                 gutterColor_s,
                 downspoutSize_s;
+    final int NUM_LINES = 5;
 
 
 
@@ -56,6 +59,26 @@ public class CreateEstimate extends AppCompatActivity {
                 getResources().getStringArray(arrayId));
         spinner_aa.setDropDownViewResource(R.layout.dropdown_item);
         spinner.setAdapter(spinner_aa);
+    }
+
+    /**
+     * This function removes a line from being an entry
+     * @param v view passed in by the remove button pressed.
+     */
+    public void removeLine(View v) {
+        for (int j = 0; j <= NUM_LINES; j++) {
+            //Below creates a new string that matches the button id
+            //Then a variable for resource id
+            String buttonID = "removeb" + (j + 1);
+            String lineID = "formll" + (j+1);
+
+            int bresourceID = getResources().getIdentifier(buttonID, "id", getPackageName());
+            int lresourceID = getResources().getIdentifier(lineID, "id", getPackageName());
+            if (bresourceID == v.getId()) { // if the id from the array produces the button id then
+                LinearLayout ll = findViewById(lresourceID);
+                ll.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
 }
