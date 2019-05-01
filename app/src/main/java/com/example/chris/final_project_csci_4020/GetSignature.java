@@ -1,69 +1,42 @@
 package com.example.chris.final_project_csci_4020;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.Button;
 
-public class GetSignature extends AppCompatActivity {
-    private float downx;
-    private float downy;
-    private float upx;
-    private float upy;
+import java.io.File;
+import java.io.FileOutputStream;
 
+public class GetSignature extends AppCompatActivity{
     private SignaturePad sp;
+    private  Button sign_button;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signature_screen);
+        sp = (SignaturePad) findViewById(R.id.signature_pad);
+        sign_button = (Button) findViewById(R.id.sign_b);
 
-        downx = 0;
-        downy = 0;
-        upx = 0;
-        upy = 0;
+        sign_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    sp.setDrawingCacheEnabled(true);
+                    Bitmap bitmap = sp.getDrawingCache();
+                    
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
 
-        sp = (SignaturePad) this.findViewById(R.id.signature_pad);
-    }
-
-    public boolean onTouch(View v, MotionEvent event) {
-        int action = event.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                downx = event.getX();
-                sp.setDx(downx);
-                downy = event.getY();
-                sp.setDy(downy);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                upx = event.getX();
-                sp.setUx(upx);
-                upy = event.getY();
-                sp.setUy(upy);
-                sp.drawSomething();
-
-                downx = upx;
-                sp.setDx(upx);
-                downy = upy;
-                sp.setDy(upy);
-                break;
-            case MotionEvent.ACTION_UP:
-                upx = event.getX();
-                sp.setUx(upx);
-                upy = event.getY();
-                sp.setUy(upy);
-
-                sp.drawSomething();
-                break;
-            case MotionEvent.ACTION_CANCEL:
-                break;
-            default:
-                break;
-
-        }
-        return true;
-    }
-
-    public void sign(View view) {
     }
 }

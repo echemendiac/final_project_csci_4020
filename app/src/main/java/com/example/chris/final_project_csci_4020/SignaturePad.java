@@ -7,28 +7,25 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
+import android.support.annotation.Dimension;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
 
-public class SignaturePad extends android.support.v7.widget.AppCompatImageView {
+public class SignaturePad extends View implements OnTouchListener {
     private int lineSize;
     private int my_color;
-    private Bitmap originalBm;
-    private Bitmap bm;
-    private Bitmap altered;
-    private Canvas canvas;
     private Paint paint;
-    private Matrix matrix;
-    private float downx;
-    private float downy;
-    private float upx;
-    private float upy;
+    private Path signature;
 
-    private Rect src;
-    private Rect dst;
-    private int originalWidth;
-    private int originalHeight;
 
+
+    private int currentWidth;
+    private int currentHeight;
 
 
     public SignaturePad(Context context){
@@ -47,46 +44,81 @@ public class SignaturePad extends android.support.v7.widget.AppCompatImageView {
     private void setup(AttributeSet attrs) {
         lineSize = 6;
         my_color = Color.BLACK;
-        downx = 0;
-        downy = 0;
-        upx = 0;
-        upy = 0;
+        signature = new Path();
 
-        originalBm = BitmapFactory.decodeResource(getResources(), R.drawable.signature);
-        originalHeight = originalBm.getHeight();
-        originalWidth = originalBm.getWidth();
-
-        src = new Rect(0, 0, originalWidth, originalHeight);
-        dst = new Rect(0, 0, this.getWidth(), this.getHeight());
-
-
-        altered = Bitmap.createBitmap(this.getWidth(), this.getHeight(), originalBm.getConfig());
-
-        canvas = new Canvas(altered);
         paint = new Paint();
         paint.setColor(my_color);
         paint.setStrokeWidth(lineSize);
-        matrix = new Matrix();
-        canvas.drawBitmap(originalBm, src, dst, paint);
-        setImageBitmap(altered);
-
+        paint.setStyle(Paint.Style.STROKE);
+        this.setOnTouchListener(this);
     }
 
-    public void setUx(float nUx){
-        upx = nUx;
-    }
-    public void setUy(float nUy){
-        upy = nUy;
-    }
-    public void setDx(float nDx){
-        downx = nDx;
-    }
-    public void setDy(float nDy){
-        downy = nDy;
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.drawPath(signature, paint);
     }
 
-    public void drawSomething(){
-        canvas.drawLine(downx, downy, upx, upy, paint);
+    public boolean onTouch(View v, MotionEvent event) {
+        float xPos = event.getX();
+        float yPos = event.getY();
+
+        int action = event.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                signature.moveTo(xPos, yPos);
+                return true;
+            case MotionEvent.ACTION_MOVE:
+                signature.lineTo(xPos, yPos);
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            default:
+                return false;
+
+        }
         invalidate();
+        return true;
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh){
+        super.onSizeChanged(w, h, oldw, oldh);
+        currentWidth = w;
+        currentHeight = h;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        int desiredWidth = 100;
+        int desiredHeight = 100;
+
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        int width;
+        int height;
+
+        if (widthMode == MeasureSpec.EXACTLY) {
+            width = widthSize;
+        } else if (widthMode == MeasureSpec.AT_MOST) {
+            width = Math.min(desiredWidth, widthSize);
+        } else {
+            width = desiredWidth;
+        }
+
+        if (heightMode == MeasureSpec.EXACTLY) {
+            height = heightSize;
+        } else if (heightMode == MeasureSpec.AT_MOST) {
+            height = Math.min(desiredHeight, heightSize);
+        } else {
+            height = desiredHeight;
+        }
+
+        setMeasuredDimension(width, height);
     }
 }

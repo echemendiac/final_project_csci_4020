@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.HashMap;
+
 public class CreateEstimate extends AppCompatActivity {
     Spinner     roofType_s,
                 roofColor_s,
@@ -33,6 +35,8 @@ public class CreateEstimate extends AppCompatActivity {
     final int NUM_LINES = 17;
 
     private Button submitB;
+
+    HashMap<String, Integer> estimateValues;
 
     Bundle bundle; //store information passed from the first activity
     MainActivity.User user;
@@ -67,6 +71,8 @@ public class CreateEstimate extends AppCompatActivity {
         setupSpinner(downspoutSize_s, R.id.downspoutType_s, R.array.downspoutSize);
         setupSpinner(downspoutColor_s, R.id.downspoutColor_s, R.array.gutterColors);
 
+        estimateValues = new HashMap<String, Integer>();
+
 
 
 //                pipeFlahsingColor_s = new
@@ -80,6 +86,10 @@ public class CreateEstimate extends AppCompatActivity {
         submitB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("get_estimate", "teeeeeeeest" + findViewById(R.id.ownerName_et).toString());
+
+
+
                 Intent getSignature = new Intent(getApplicationContext(), GetSignature.class);
                 startActivity(getSignature);
             }

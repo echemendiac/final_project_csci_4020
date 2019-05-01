@@ -1,48 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".GetSignature"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/signaturePad_cl"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
 
-        <LinearLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.example.chris.final_project_csci_4020.SignaturePad
+            android:id="@+id/signature_pad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:padding="@dimen/spacing"
-            android:orientation="vertical">
-            <com.example.chris.final_project_csci_4020
-                android:visibility="invisible"
-                android:id="@+id/signature_pad"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:orientation="vertical"
-            />
-            <Button
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:id="@+id/login_b"
-                android:background="@drawable/button"
-                android:text="Sign"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/buttonTextSize"
-                android:onClick="sign"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                />
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:background="#FFFF"/>
 
-        </LinearLayout>
-    </android.support.constraint.ConstraintLayout>
-</FrameLayout>
+        <Button
+            android:id="@+id/sign_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:text="Sign"/>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
