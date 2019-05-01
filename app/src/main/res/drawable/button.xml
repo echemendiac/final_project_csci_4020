@@ -19,7 +19,7 @@
                         android:radius="10dp" />
                     <stroke
                         android:width="3dp"
-                        android:color="#000000" />
+                        android:color="@color/colorPrimary" />
 
                 </shape>
 
@@ -40,7 +40,7 @@
                         android:radius="10dp" />
                     <stroke
                         android:width="3dp"
-                        android:color="#000000" />
+                        android:color="@color/colorPrimary" />
 
                 </shape>
             </item>

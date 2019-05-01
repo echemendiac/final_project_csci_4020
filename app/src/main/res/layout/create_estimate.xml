@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/spacing">
     <LinearLayout
         android:id="@+id/customerInfo_ll"
         android:layout_width="match_parent"
@@ -990,6 +991,11 @@
                 android:layout_marginLeft="@dimen/spacing"
                 android:onClick="removeLine"/>
         </LinearLayout>
+        <ImageView
+            android:layout_width="@dimen/boxWidth"
+            android:layout_height="@dimen/boxHeight"
+            android:id="@+id/signature_iv"
+            />
         <!-- Submit Button Start HERE -->
         <LinearLayout
             android:id="@+id/formll18"
@@ -1010,6 +1016,7 @@
                 android:text="Submit"
                 android:layout_marginLeft="@dimen/spacing"
                 />
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

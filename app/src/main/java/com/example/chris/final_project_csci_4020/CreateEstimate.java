@@ -1,6 +1,10 @@
 package com.example.chris.final_project_csci_4020;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.hardware.camera2.TotalCaptureResult;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class CreateEstimate extends AppCompatActivity {
     Spinner     roofType_s,
@@ -28,8 +33,6 @@ public class CreateEstimate extends AppCompatActivity {
 
     Bundle bundle; //store information passed from the first activity
     MainActivity.User user;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,7 @@ public class CreateEstimate extends AppCompatActivity {
      * @param v view passed in by the remove button pressed.
      */
     public void removeLine(View v) {
+        LinearLayout ll = null;
         for (int j = 0; j <= NUM_LINES; j++) {
             //Below creates a new string that matches the button id
             //Then a variable for resource id
@@ -98,11 +102,55 @@ public class CreateEstimate extends AppCompatActivity {
             int bresourceID = getResources().getIdentifier(buttonID, "id", getPackageName());
             int lresourceID = getResources().getIdentifier(lineID, "id", getPackageName());
             if (bresourceID == v.getId()) { // if the id from the array produces the button id then
-                LinearLayout ll = findViewById(lresourceID);
-                ll.setVisibility(View.INVISIBLE);
+                ll = findViewById(lresourceID);
             }
         }
+        Log.i("Alert Dialogue Button","Alert Dialogue was called");
+        //setup a textView to be used inside the alert dialog
+        String titleString = "Logout";
+        TextView textView = new TextView(CreateEstimate.this);
+        textView.setTextSize(40);
+        textView.setTypeface(Typeface.DEFAULT_BOLD);
+        textView.setTextColor(Color.YELLOW);
+        textView.setPadding(40,40,40,40);
+        textView.setText("Delete this Line, Are you sure?");
+
+        //Allow the text view to scroll by setting it as a child of a scrollview
+//        ScrollView scrollView = new ScrollView(v.getContext());
+//        scrollView.addView(textView);
+
+        //only final variables can be inputted into an inner class.
+        // So I just saved the generated layout as a final layout.
+        final LinearLayout lly  = ll;
+
+        //Create alert dialog and set up attributes
+        new AlertDialog.Builder(CreateEstimate.this)
+                //set the message of the alert dialog to be a view
+                .setView(textView)
+//                .setTitle(titleString)
+
+
+                .setPositiveButton(android.R.string.yes
+                        , new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(lly != null)
+                                lly.setVisibility(View.INVISIBLE);
+                                else
+                                    Log.i("onclick", "Line Linear Layout is null");
+                            }
+                            }
+                        )
+                .setNegativeButton(android.R.string.no
+                        , new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Nothing should happen except the window screen closes.
+                            }
+                        })
+
+                .show();
     }
+
 
     /**
      * Check the mode that was passed with the bundle. Then disable/enable features for ot
