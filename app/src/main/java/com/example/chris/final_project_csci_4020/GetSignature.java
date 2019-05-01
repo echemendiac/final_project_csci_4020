@@ -169,23 +169,23 @@ public class GetSignature extends AppCompatActivity{
         alert.show();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // do your stuff
-                } else {
-                    //Toast.makeText(Login.this, "GET_ACCOUNTS Denied",
-                    //Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions,
-                        grantResults);
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode,
+//                                           String[] permissions, int[] grantResults) {
+//        switch (requestCode) {
+//            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE:
+//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    // do your stuff
+//                } else {
+//                    //Toast.makeText(Login.this, "GET_ACCOUNTS Denied",
+//                    //Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            default:
+//                super.onRequestPermissionsResult(requestCode, permissions,
+//                        grantResults);
+//        }
+//    }
 
     private static boolean storagePermitted(Activity activity) {
 
