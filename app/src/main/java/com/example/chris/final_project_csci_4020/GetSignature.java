@@ -90,7 +90,7 @@ public class GetSignature extends AppCompatActivity{
                             directory.mkdirs();
                         }
 
-                        PdfWriter.getInstance(document, new FileOutputStream((estimateStyles.get("name") + ".pdf")));
+                        PdfWriter.getInstance(document, new FileOutputStream((directoryPath + estimateStyles.get("name") + ".pdf")));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
