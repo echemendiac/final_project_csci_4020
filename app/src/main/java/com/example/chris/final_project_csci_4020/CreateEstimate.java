@@ -3,6 +3,7 @@ package com.example.chris.final_project_csci_4020;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.hardware.camera2.TotalCaptureResult;
@@ -31,6 +32,8 @@ public class CreateEstimate extends AppCompatActivity {
                 downspoutColor_s;
     final int NUM_LINES = 17;
 
+    private Button submitB;
+
     Bundle bundle; //store information passed from the first activity
     MainActivity.User user;
 
@@ -51,7 +54,7 @@ public class CreateEstimate extends AppCompatActivity {
         //Check mode
         checkMode();
 
-        //Spinneers act like drop downs
+        //Spinners act like drop downs
 
         //---- Setting Up Spinners ----//
         setupSpinner(roofType_s, R.id.roofType_s, R.array.roofType);
@@ -73,8 +76,18 @@ public class CreateEstimate extends AppCompatActivity {
 //                gutterColor_s,
 //                downspoutSize_s
 
-
+        submitB = (Button) this.findViewById(R.id.submitEstimate_b);
+        submitB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent getSignature = new Intent(getApplicationContext(), GetSignature.class);
+                startActivity(getSignature);
+            }
+        });
     }
+
+
+
     private void setupSpinner(Spinner spinner, int viewId, int arrayId){
         final Context context = CreateEstimate.this;
         //Setup Spinner

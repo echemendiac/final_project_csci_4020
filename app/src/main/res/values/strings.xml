@@ -60,5 +60,6 @@
         <item>Metal</item>
     </string-array>
     <string name="title_activity_create_estimate">Create Estimates</string>
+    <string name="title_activity_get_signature">Sign</string>
 
 </resources>

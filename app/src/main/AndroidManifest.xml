@@ -16,6 +16,11 @@
             android:label="@string/title_activity_create_estimate"
             android:theme="@style/NoActionBar"></activity>
         <activity
+            android:screenOrientation="landscape"
+            android:name=".GetSignature"
+            android:label="@string/title_activity_get_signature"
+            android:theme="@style/NoActionBar"></activity>
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>

@@ -7,14 +7,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 
 public class SignaturePad extends android.support.v7.widget.AppCompatImageView {
-    private int lineSize; //Stores the line thickness
+    private int lineSize;
     private int my_color;
+    private Bitmap originalBm;
     private Bitmap bm;
     private Bitmap altered;
     private Canvas canvas;
@@ -24,16 +23,12 @@ public class SignaturePad extends android.support.v7.widget.AppCompatImageView {
     private float downy;
     private float upx;
     private float upy;
-    private String currentMode;
-    private float radius;
-    private float height;
-    private float width;
-    private float xAxis;
-    private float yAxis;
-    private float tempUx;
-    private float tempUy;
-    private float tempDx;
-    private float tempDy;
+
+    private Rect src;
+    private Rect dst;
+    private int originalWidth;
+    private int originalHeight;
+
 
 
     public SignaturePad(Context context){
@@ -45,33 +40,36 @@ public class SignaturePad extends android.support.v7.widget.AppCompatImageView {
         setup(attrs);
     }
     public SignaturePad(Context context, AttributeSet attrs, int defaultStyleAttr){
-        super(context, attrs,defaultStyleAttr);
+        super(context, attrs, defaultStyleAttr);
         setup(attrs);
     }
 
     private void setup(AttributeSet attrs) {
-        lineSize = 6; //Stores the line thickness
+        lineSize = 6;
         my_color = Color.BLACK;
         downx = 0;
         downy = 0;
         upx = 0;
         upy = 0;
 
-        bm = BitmapFactory.decodeResource(getResources(), R.drawable.signature);
-        altered = Bitmap.createBitmap(bm.getWidth(), bm.getHeight(), bm.getConfig());
+        originalBm = BitmapFactory.decodeResource(getResources(), R.drawable.signature);
+        originalHeight = originalBm.getHeight();
+        originalWidth = originalBm.getWidth();
+
+        src = new Rect(0, 0, originalWidth, originalHeight);
+        dst = new Rect(0, 0, this.getWidth(), this.getHeight());
+
+
+        altered = Bitmap.createBitmap(this.getWidth(), this.getHeight(), originalBm.getConfig());
 
         canvas = new Canvas(altered);
         paint = new Paint();
         paint.setColor(my_color);
         paint.setStrokeWidth(lineSize);
         matrix = new Matrix();
-        canvas.drawBitmap(bm, matrix, paint);
+        canvas.drawBitmap(originalBm, src, dst, paint);
         setImageBitmap(altered);
 
-        height = canvas.getHeight();
-        width = canvas.getWidth();
-        xAxis = (canvas.getWidth() / 2);
-        yAxis = (canvas.getHeight() / 2);
     }
 
     public void setUx(float nUx){
@@ -90,43 +88,5 @@ public class SignaturePad extends android.support.v7.widget.AppCompatImageView {
     public void drawSomething(){
         canvas.drawLine(downx, downy, upx, upy, paint);
         invalidate();
-    }
-
-    public boolean onTouch(View v, MotionEvent event) {
-        int action = event.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                downx = event.getX();
-                setDx(downx);
-                downy = event.getY();
-                setDy(downy);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                upx = event.getX();
-                setUx(upx);
-                upy = event.getY();
-                setUy(upy);
-                drawSomething();
-
-                downx = upx;
-                setDx(upx);
-                downy = upy;
-                setDy(upy);
-                break;
-            case MotionEvent.ACTION_UP:
-                upx = event.getX();
-                setUx(upx);
-                upy = event.getY();
-                setUy(upy);
-
-                drawSomething();
-                break;
-            case MotionEvent.ACTION_CANCEL:
-                break;
-            default:
-                break;
-
-        }
-        return true;
     }
 }
