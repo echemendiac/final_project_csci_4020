@@ -13,18 +13,27 @@ import android.widget.Button;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
 
 public class GetSignature extends AppCompatActivity{
     private SignaturePad sp;
     private  Button sign_button;
+
+    private HashMap<String, Integer> estimateQuantaties;
+    private HashMap<String, String> estimateStyles;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signature_screen);
         sp = (SignaturePad) findViewById(R.id.signature_pad);
-        sign_button = (Button) findViewById(R.id.sign_b);
 
+        estimateQuantaties = (HashMap<String, Integer>) getIntent().getSerializableExtra("quant");
+        estimateStyles = (HashMap<String, String>) getIntent().getSerializableExtra("styles");
+
+        Log.i("values-----------", "test name: " + estimateStyles.get("name"));
+
+        sign_button = (Button) findViewById(R.id.sign_b);
         sign_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -167,32 +167,116 @@ public class CreateEstimate extends AppCompatActivity {
         submitB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(roofSquares.getText().toString().isEmpty()){
+                    estimateQuantaties.put("roofSqs", 0);
+                }
+                else{
+                    estimateQuantaties.put("roofSqs", Integer.parseInt(roofSquares.getText().toString()));
+                }
+                if(tearOff.getText().toString().isEmpty()){
+                    estimateQuantaties.put("tear", 0);
+                }
+                else{
+                    estimateQuantaties.put("tear", Integer.parseInt(tearOff.getText().toString()));
+                }
+                if(hipRdgeCap.getText().toString().isEmpty()){
+                    estimateQuantaties.put("hip", 0);
+                }
+                else{
+                    estimateQuantaties.put("hip", Integer.parseInt(hipRdgeCap.getText().toString()));
+                }
+                if(ridgeVents.getText().toString().isEmpty()){
+                    estimateQuantaties.put("ridge", 0);
+                }
+                else{
+                    estimateQuantaties.put("ridge", Integer.parseInt(ridgeVents.getText().toString()));
+                }
+                if(roofVents.getText().toString().isEmpty()){
+                    estimateQuantaties.put("vents", 0);
+                }
+                else{
+                    estimateQuantaties.put("vents", Integer.parseInt(roofVents.getText().toString()));
+                }
+                if(valley.getText().toString().isEmpty()){
+                    estimateQuantaties.put("valley", 0);
+                }
+                else{
+                    estimateQuantaties.put("valley", Integer.parseInt(valley.getText().toString()));
+                }
+                if(chimenyWallFlashing.getText().toString().isEmpty()){
+                    estimateQuantaties.put("chimeny", 0);
+                }
+                else{
+                    estimateQuantaties.put("chimeny", Integer.parseInt(chimenyWallFlashing.getText().toString()));
+                }
+                if(iceWaterShield.getText().toString().isEmpty()){
+                    estimateQuantaties.put("shield", 0);
+                }
+                else{
+                    estimateQuantaties.put("shield", Integer.parseInt(iceWaterShield.getText().toString()));
+                }
+                if(sheetReplacement.getText().toString().isEmpty()){
+                    estimateQuantaties.put("sheet", 0);
+                }
+                else{
+                    estimateQuantaties.put("sheet", Integer.parseInt(sheetReplacement.getText().toString()));
+                }
+                if(roofPitch.getText().toString().isEmpty()){
+                    estimateQuantaties.put("pitch", 0);
+                }
+                else{
+                    estimateQuantaties.put("pitch", Integer.parseInt(roofPitch.getText().toString()));
+                }
+                if(stories.getText().toString().isEmpty()){
+                    estimateQuantaties.put("stories", 0);
+                }
+                else{
+                    estimateQuantaties.put("stories", Integer.parseInt(stories.getText().toString()));
+                }
+                if(dripEdge.getText().toString().isEmpty()){
+                    estimateQuantaties.put("drip", 0);
+                }
+                else{
+                    estimateQuantaties.put("drip", Integer.parseInt(dripEdge.getText().toString()));
+                }
+                if(siding.getText().toString().isEmpty()){
+                    estimateQuantaties.put("siding", 0);
+                }
+                else{
+                    estimateQuantaties.put("siding", Integer.parseInt(siding.getText().toString()));
+                }
+                if(fasciaBoards.getText().toString().isEmpty()){
+                    estimateQuantaties.put("fascia", 0);
+                }
+                else{
+                    estimateQuantaties.put("fascia", Integer.parseInt(fasciaBoards.getText().toString()));
+                }
+                if(gutters.getText().toString().isEmpty()){
+                    estimateQuantaties.put("gutters", 0);
+                }
+                else{
+                    estimateQuantaties.put("gutters", Integer.parseInt(gutters.getText().toString()));
+                }
+                if(sidingTwo.getText().toString().isEmpty()){
+                    estimateQuantaties.put("sidingTwo", 0);
+                }
+                else{
+                    estimateQuantaties.put("sidingTwo", Integer.parseInt(sidingTwo.getText().toString()));
+                }
+                if(gutterGaurds.getText().toString().isEmpty()){
+                    estimateQuantaties.put("gutterGuards", 0);
+                }
+                else{
+                    estimateQuantaties.put("gutterGuards", Integer.parseInt(gutterGaurds.getText().toString()));
+                }
 
-                estimateQuantaties.put("name", Integer.parseInt(cusName.getText().toString()));
-                estimateQuantaties.put("email", Integer.parseInt(email.getText().toString()));
-                estimateQuantaties.put("address", Integer.parseInt(address.getText().toString()));
-                estimateQuantaties.put("phone", Integer.parseInt(phone.getText().toString()));
-                estimateQuantaties.put("city", Integer.parseInt(city.getText().toString()));
-                estimateQuantaties.put("state", Integer.parseInt(state.getText().toString()));
-                estimateQuantaties.put("zip", Integer.parseInt(zip.getText().toString()));
-                estimateQuantaties.put("roofSqs", Integer.parseInt(roofSquares.getText().toString()));
-                estimateQuantaties.put("tear", Integer.parseInt(tearOff.getText().toString()));
-                estimateQuantaties.put("hip", Integer.parseInt(hipRdgeCap.getText().toString()));
-                estimateQuantaties.put("ridge", Integer.parseInt(ridgeVents.getText().toString()));
-                estimateQuantaties.put("vents", Integer.parseInt(roofVents.getText().toString()));
-                estimateQuantaties.put("valley", Integer.parseInt(valley.getText().toString()));
-                estimateQuantaties.put("chimeny", Integer.parseInt(chimenyWallFlashing.getText().toString()));
-                estimateQuantaties.put("shield", Integer.parseInt(iceWaterShield.getText().toString()));
-                estimateQuantaties.put("sheet", Integer.parseInt(sheetReplacement.getText().toString()));
-                estimateQuantaties.put("pitch", Integer.parseInt(roofPitch.getText().toString()));
-                estimateQuantaties.put("stories", Integer.parseInt(stories.getText().toString()));
-                estimateQuantaties.put("drip", Integer.parseInt(dripEdge.getText().toString()));
-                estimateQuantaties.put("siding", Integer.parseInt(siding.getText().toString()));
-                estimateQuantaties.put("fascia", Integer.parseInt(fasciaBoards.getText().toString()));
-                estimateQuantaties.put("gutters", Integer.parseInt(gutters.getText().toString()));
-                estimateQuantaties.put("sidingTwo", Integer.parseInt(sidingTwo.getText().toString()));
-                estimateQuantaties.put("gutterGuards", Integer.parseInt(gutterGaurds.getText().toString()));
-
+                estimateStyles.put("name", cusName.getText().toString());
+                estimateStyles.put("email", email.getText().toString());
+                estimateStyles.put("address", address.getText().toString());
+                estimateStyles.put("phone", phone.getText().toString());
+                estimateStyles.put("city", city.getText().toString());
+                estimateStyles.put("state", state.getText().toString());
+                estimateStyles.put("zip", zip.getText().toString());
                 estimateStyles.put("roofType", roofType.getSelectedItem().toString());
                 estimateStyles.put("roofColor", roofColor.getSelectedItem().toString());
                 estimateStyles.put("flashingType", chimenyWallFlashingType.getSelectedItem().toString());
@@ -203,10 +287,13 @@ public class CreateEstimate extends AppCompatActivity {
                 estimateStyles.put("sidingSize", sidingSize.getSelectedItem().toString());
                 estimateStyles.put("sidingStyleTwo", sidingStyleTwo.getSelectedItem().toString());
 
-                
+
 
 
                 Intent getSignature = new Intent(getApplicationContext(), GetSignature.class);
+
+                getSignature.putExtra("quant", estimateQuantaties);
+                getSignature.putExtra("styles", estimateStyles);
                 startActivity(getSignature);
             }
         });
