@@ -341,6 +341,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewEstimate_b.setVisibility(View.INVISIBLE);
                 viewWebsite_b.setVisibility(View.INVISIBLE);
         }
+
     }
 
 
