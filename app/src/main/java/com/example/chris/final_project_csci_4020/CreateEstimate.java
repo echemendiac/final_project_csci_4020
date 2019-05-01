@@ -139,7 +139,7 @@ public class CreateEstimate extends AppCompatActivity {
         chimenyWallFlashingType = (Spinner) findViewById(R.id.pipeFlashing_s);
         chimenyWallFlashing = (EditText) findViewById(R.id.pipe_et);
         iceWaterShield = (EditText) findViewById(R.id.ice_et);
-        sheetReplacement = (EditText) findViewById(R.id.street_et);
+        sheetReplacement = (EditText) findViewById(R.id.sheet_et);
         roofPitch = (EditText) findViewById(R.id.roofPitch_et);
         stories = (EditText) findViewById(R.id.stories_et);
         dripEdge = (EditText) findViewById(R.id.drip_et);
@@ -215,7 +215,7 @@ public class CreateEstimate extends AppCompatActivity {
                 else{
                     estimateQuantaties.put("shield", Integer.parseInt(iceWaterShield.getText().toString()));
                 }
-                if(sheetReplacement.getText().toString().isEmpty()){
+                if(sheetReplacement.getText().toString().isEmpty() ){
                     estimateQuantaties.put("sheet", 0);
                 }
                 else{
