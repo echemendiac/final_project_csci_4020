@@ -31,7 +31,7 @@ public class GetSignature extends AppCompatActivity{
                 try {
                     sp.setDrawingCacheEnabled(true);
                     Bitmap bitmap = sp.getDrawingCache();
-                    
+
                 } catch(Exception e){
                     e.printStackTrace();
                 }

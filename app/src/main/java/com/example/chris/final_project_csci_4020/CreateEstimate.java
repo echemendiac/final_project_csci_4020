@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,7 +37,53 @@ public class CreateEstimate extends AppCompatActivity {
 
     private Button submitB;
 
-    HashMap<String, Integer> estimateValues;
+    private HashMap<String, Integer> estimateQuantaties;
+    private HashMap<String, String> estimateStyles;
+
+    private EditText cusName;
+    private EditText email;
+    private EditText address;
+    private EditText phone;
+    private EditText city;
+    private EditText state;
+    private EditText zip;
+
+    private Spinner roofType;
+    private Spinner roofColor;
+
+    private EditText roofSquares;
+    private EditText tearOff;
+    private EditText hipRdgeCap;
+    private EditText ridgeVents;
+    private EditText roofVents;
+    private EditText valley;
+
+    private Spinner chimenyWallFlashingType;
+
+    private EditText chimenyWallFlashing;
+    private EditText iceWaterShield;
+    private EditText sheetReplacement;
+    private EditText roofPitch;
+    private EditText stories;
+    private EditText dripEdge;
+
+    private Spinner sidingType;
+    private Spinner sidingStyle;
+
+    private EditText siding;
+    private EditText fasciaBoards;
+
+    private Spinner gutterSize;
+    private Spinner gutterStyle;
+
+    private EditText gutters;
+
+    private Spinner sidingSize;
+    private Spinner sidingStyleTwo;
+
+    private EditText sidingTwo;
+    private EditText gutterGaurds;
+
 
     Bundle bundle; //store information passed from the first activity
     MainActivity.User user;
@@ -71,8 +118,42 @@ public class CreateEstimate extends AppCompatActivity {
         setupSpinner(downspoutSize_s, R.id.downspoutType_s, R.array.downspoutSize);
         setupSpinner(downspoutColor_s, R.id.downspoutColor_s, R.array.gutterColors);
 
-        estimateValues = new HashMap<String, Integer>();
+        estimateQuantaties = new HashMap<String, Integer>();
+        estimateStyles = new HashMap<String, String>();
 
+        cusName = (EditText) findViewById(R.id.ownerName_et);
+        email = (EditText) findViewById(R.id.email_et);
+        address = (EditText) findViewById(R.id.street_et);
+        phone = (EditText) findViewById(R.id.phoneNum_et);
+        city = (EditText) findViewById(R.id.city_et);
+        state = (EditText) findViewById(R.id.state_et);
+        zip = (EditText) findViewById(R.id.zipcode_et);
+        roofType = (Spinner) findViewById(R.id.roofType_s);
+        roofColor = (Spinner) findViewById(R.id.roofColor_s);
+        roofSquares = (EditText) findViewById(R.id.roof_Quatity);
+        tearOff = (EditText) findViewById(R.id.tearOff_et);
+        hipRdgeCap = (EditText) findViewById(R.id.hip_et);
+        ridgeVents = (EditText) findViewById(R.id.ridge_et);
+        roofVents = (EditText) findViewById(R.id.roofVents_et);
+        valley = (EditText) findViewById(R.id.valley_et);
+        chimenyWallFlashingType = (Spinner) findViewById(R.id.pipeFlashing_s);
+        chimenyWallFlashing = (EditText) findViewById(R.id.pipe_et);
+        iceWaterShield = (EditText) findViewById(R.id.ice_et);
+        sheetReplacement = (EditText) findViewById(R.id.street_et);
+        roofPitch = (EditText) findViewById(R.id.roofPitch_et);
+        stories = (EditText) findViewById(R.id.stories_et);
+        dripEdge = (EditText) findViewById(R.id.drip_et);
+        sidingType = (Spinner) findViewById(R.id.sidingType_et);
+        sidingStyle = (Spinner) findViewById(R.id.sidingColor_s);
+        siding = (EditText) findViewById(R.id.sidingQuantity_et);
+        fasciaBoards = (EditText) findViewById(R.id.fascia_et);
+        gutterSize = (Spinner) findViewById(R.id.gutterType_s);
+        gutterStyle = (Spinner) findViewById(R.id.gutterColor_s);
+        gutters = (EditText) findViewById(R.id.gutterQuantity);
+        sidingSize = (Spinner) findViewById(R.id.downspoutType_s);
+        sidingStyleTwo = (Spinner) findViewById(R.id.downspoutColor_s);
+        sidingTwo = (EditText) findViewById(R.id.downspoutQuantity);
+        gutterGaurds = (EditText) findViewById(R.id.gutterGuard_et);
 
 
 //                pipeFlahsingColor_s = new
@@ -86,8 +167,43 @@ public class CreateEstimate extends AppCompatActivity {
         submitB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("get_estimate", "teeeeeeeest" + findViewById(R.id.ownerName_et).toString());
 
+                estimateQuantaties.put("name", Integer.parseInt(cusName.getText().toString()));
+                estimateQuantaties.put("email", Integer.parseInt(email.getText().toString()));
+                estimateQuantaties.put("address", Integer.parseInt(address.getText().toString()));
+                estimateQuantaties.put("phone", Integer.parseInt(phone.getText().toString()));
+                estimateQuantaties.put("city", Integer.parseInt(city.getText().toString()));
+                estimateQuantaties.put("state", Integer.parseInt(state.getText().toString()));
+                estimateQuantaties.put("zip", Integer.parseInt(zip.getText().toString()));
+                estimateQuantaties.put("roofSqs", Integer.parseInt(roofSquares.getText().toString()));
+                estimateQuantaties.put("tear", Integer.parseInt(tearOff.getText().toString()));
+                estimateQuantaties.put("hip", Integer.parseInt(hipRdgeCap.getText().toString()));
+                estimateQuantaties.put("ridge", Integer.parseInt(ridgeVents.getText().toString()));
+                estimateQuantaties.put("vents", Integer.parseInt(roofVents.getText().toString()));
+                estimateQuantaties.put("valley", Integer.parseInt(valley.getText().toString()));
+                estimateQuantaties.put("chimeny", Integer.parseInt(chimenyWallFlashing.getText().toString()));
+                estimateQuantaties.put("shield", Integer.parseInt(iceWaterShield.getText().toString()));
+                estimateQuantaties.put("sheet", Integer.parseInt(sheetReplacement.getText().toString()));
+                estimateQuantaties.put("pitch", Integer.parseInt(roofPitch.getText().toString()));
+                estimateQuantaties.put("stories", Integer.parseInt(stories.getText().toString()));
+                estimateQuantaties.put("drip", Integer.parseInt(dripEdge.getText().toString()));
+                estimateQuantaties.put("siding", Integer.parseInt(siding.getText().toString()));
+                estimateQuantaties.put("fascia", Integer.parseInt(fasciaBoards.getText().toString()));
+                estimateQuantaties.put("gutters", Integer.parseInt(gutters.getText().toString()));
+                estimateQuantaties.put("sidingTwo", Integer.parseInt(sidingTwo.getText().toString()));
+                estimateQuantaties.put("gutterGuards", Integer.parseInt(gutterGaurds.getText().toString()));
+
+                estimateStyles.put("roofType", roofType.getSelectedItem().toString());
+                estimateStyles.put("roofColor", roofColor.getSelectedItem().toString());
+                estimateStyles.put("flashingType", chimenyWallFlashingType.getSelectedItem().toString());
+                estimateStyles.put("sidingType", sidingType.getSelectedItem().toString());
+                estimateStyles.put("sidingStyle", sidingStyle.getSelectedItem().toString());
+                estimateStyles.put("gutterSize", gutterSize.getSelectedItem().toString());
+                estimateStyles.put("gutterStyle", gutterStyle.getSelectedItem().toString());
+                estimateStyles.put("sidingSize", sidingSize.getSelectedItem().toString());
+                estimateStyles.put("sidingStyleTwo", sidingStyleTwo.getSelectedItem().toString());
+
+                
 
 
                 Intent getSignature = new Intent(getApplicationContext(), GetSignature.class);

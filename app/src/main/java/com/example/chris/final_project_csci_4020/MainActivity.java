@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.viewWebsite_b:
                 break;
             default:
-                Log.i("Onclick","Unathorized button was clicked.");
+                Log.i("Onclick","Unauthorized button was clicked.");
         }
         //Create a Bundle to hold information
         Bundle bundle = new Bundle();
