@@ -288,22 +288,7 @@ public class CreateEstimate extends AppCompatActivity {
                 estimateStyles.put("sidingStyleTwo", sidingStyleTwo.getSelectedItem().toString());
 
                 //String Cats
-                String name = "Name:" +  estimateStyles.get("name");
-                String email = "Email:" +  estimateStyles.get("email");
-                String address = "Address:" +  estimateStyles.get("address");
-                String phone = "Phone:"+  estimateStyles.get("phone");
-                String city = "City: " +  estimateStyles.get("");
-                String state = "State: " +  estimateStyles.get("state");
-                String zip = "Zip: " +  estimateStyles.get("zip");
-                String roofType = "Roof Type:" +  estimateStyles.get("roofType");
-                String roofColor = "Roof Color:" +  estimateStyles.get("roofColor");
-                String flashingType = "Flashing Type" +  estimateStyles.get("flashingType");
-                String sidingType = "Siding Type" +  estimateStyles.get("sidingType");
-                String sidingStyle = "Siding Style"+  estimateStyles.get("sidingStyle");
-                String gutterSize = "Gutter Size" +  estimateStyles.get("gutterSize");
-                String gutterStyle = "Gutter Color"+  estimateStyles.get("gutterStyle");
-                String sidingSize = "Siding Size" + estimateStyles.get("sidingSize");
-                String sidingStyleTwo = "Siding Color"+  estimateStyles.get("sidingStyleTwo");
+
 
                 Intent getSignature = new Intent(getApplicationContext(), GetSignature.class);
 

@@ -83,26 +83,109 @@ public class GetSignature extends AppCompatActivity{
                 if (storagePermitted(GetSignature.this)) {
                     Log.i("-----------------", "past storage check");
                     try {
-                        directoryPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/outputEstimates";
+                        Log.i("-----------------", "gets path");
+                        directoryPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/outputEstimates2/";
                         directory = new File(directoryPath);
 
                         if (!directory.exists()) {
+                            Log.i("-----------------", "makes directory");
                             directory.mkdirs();
                         }
-
-                        PdfWriter.getInstance(document, new FileOutputStream((directoryPath + estimateStyles.get("name") + ".pdf")));
+                        Log.i("-----------------", "make the pdf");
+                        PdfWriter.getInstance(document, new FileOutputStream((estimateStyles.get("name") + ".pdf")));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
-
+                    Log.i("-----------------", "open doc");
                     document.open();
                     font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, BaseColor.BLACK);
                     Chunk chunk = new Chunk(estimateStyles.get("name"), font);
+                    Chunk name = new Chunk("Name:" +  estimateStyles.get("name"), font);
+                    Chunk email = new Chunk("Email:" +  estimateStyles.get("email"), font);
+                    Chunk address = new Chunk("Address:" +  estimateStyles.get("address"), font);
+                    Chunk phone = new Chunk("Phone:"+  estimateStyles.get("phone"), font);
+                    Chunk city = new Chunk("City: " +  estimateStyles.get("city"), font);
+                    Chunk state = new Chunk("State: " +  estimateStyles.get("state"), font);
+                    Chunk zip = new Chunk("Zip: " +  estimateStyles.get("zip"), font);
+
+
+                    Chunk roofType = new Chunk("Roof Type:" +  estimateStyles.get("roofType"), font);
+                    Chunk roofColor = new Chunk("Roof Color:" +  estimateStyles.get("roofColor"), font);
+                    Chunk roofAmmount = new Chunk("Roof Squares:" +  estimateQuantaties.get("roofSqs"), font);
+
+                    Chunk tearOffAmount = new Chunk("Tear:" +  estimateQuantaties.get("tear"), font);
+                    Chunk caps = new Chunk("Caps:" +  estimateQuantaties.get("hip"), font);
+                    Chunk ridgeVents = new Chunk("Ridge Vents:" +  estimateQuantaties.get("ridge"), font);
+                    Chunk roofVents = new Chunk("Roof Vents:" +  estimateQuantaties.get("vents"), font);
+                    Chunk valley = new Chunk("Valley:" +  estimateQuantaties.get("valley"), font);
+
+
+                    Chunk flashingType = new Chunk("Flashing Type" +  estimateStyles.get("flashingType"), font);
+                    Chunk flashing = new Chunk("Flashing amount:" +  estimateStyles.get("chimeny"), font);
+
+                    Chunk shielding = new Chunk("Shielding:" +  estimateQuantaties.get("shield"), font);
+                    Chunk sheet = new Chunk("Sheet replacement:" +  estimateQuantaties.get("sheet"), font);
+                    Chunk pitch = new Chunk("Pitch:" +  estimateQuantaties.get("pitch"), font);
+                    Chunk stories = new Chunk("Stories:" +  estimateQuantaties.get("stories"), font);
+                    Chunk edge = new Chunk("Drip edge:" +  estimateQuantaties.get("drip"), font);
+
+
+                    Chunk sidingType = new Chunk("Siding Type" +  estimateStyles.get("sidingType"), font);
+                    Chunk sidingStyle = new Chunk("Siding Style"+  estimateStyles.get("sidingStyle"), font);
+                    Chunk sidingAmmounts = new Chunk("Siding Amount"+  estimateQuantaties.get("siding"), font);
+
+                    Chunk fascia = new Chunk("Fascia"+  estimateQuantaties.get("fascia"), font);
+
+
+                    Chunk gutterSize = new Chunk("Gutter Size" +  estimateStyles.get("gutterSize"), font);
+                    Chunk gutterStyle = new Chunk("Gutter Color"+  estimateStyles.get("gutterStyle"), font);
+                    Chunk gutterAmmount = new Chunk("Gutter Amount"+  estimateQuantaties.get("gutters"), font);
+
+
+                    Chunk sidingSize = new Chunk("Siding Size" + estimateStyles.get("sidingSize"), font);
+                    Chunk sidingStyleTwo = new Chunk("Siding Color"+  estimateStyles.get("sidingStyleTwo"), font);
+                    Chunk sidingTwo = new Chunk("Fascia: "+  estimateQuantaties.get("sidingTwo"), font);
+
+                    Chunk gutterGuards = new Chunk("Gutter Guards: "+  estimateQuantaties.get("gutterGuards"), font);
 
 
                     try {
+                        Log.i("-----------------", "write to doc");
                         document.add(chunk);
+                        document.add(name );
+                        document.add(email);
+                        document.add(address);
+                        document.add(phone);
+                        document.add(city);
+                        document.add(state);
+                        document.add(zip);
+                        document.add(roofType);
+                        document.add(roofColor);
+                        document.add(roofAmmount);
+                        document.add(tearOffAmount);
+                        document.add(caps);
+                        document.add(ridgeVents);
+                        document.add(roofVents);
+                        document.add(valley);
+                        document.add(flashingType);
+                        document.add(flashing);
+                        document.add(shielding);
+                        document.add(sheet);
+                        document.add(pitch);
+                        document.add(stories);
+                        document.add(edge);
+                        document.add(sidingType);
+                        document.add(sidingStyle);
+                        document.add(sidingAmmounts);
+                        document.add(fascia);
+                        document.add(gutterSize);
+                        document.add(gutterStyle);
+                        document.add(gutterAmmount);
+                        document.add(sidingSize);
+                        document.add(sidingStyleTwo);
+                        document.add(sidingTwo);
+                        document.add(gutterGuards);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
