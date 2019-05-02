@@ -21,15 +21,19 @@ import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class GetSignature extends AppCompatActivity{
@@ -67,12 +71,18 @@ public class GetSignature extends AppCompatActivity{
                     e.printStackTrace();
                 }
 
-                makeDocument();
+                try {
+                    makeDocument();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (BadElementException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
     }
-    private void makeDocument(){
+    private void makeDocument() throws IOException, BadElementException {
         Document document = new Document();
 
         Log.i("-----------------", "in make documnet");
@@ -83,7 +93,7 @@ public class GetSignature extends AppCompatActivity{
                     Log.i("-----------------", "past storage check");
                     try {
                         Log.i("-----------------", "gets path");
-                        directoryPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/outputEstimates2/";
+                        directoryPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/outputEstimates";
                         directory = new File(directoryPath);
 
                         if (!directory.exists()) {
@@ -91,7 +101,9 @@ public class GetSignature extends AppCompatActivity{
                             directory.mkdirs();
                         }
                         Log.i("-----------------", "make the pdf");
-                        PdfWriter.getInstance(document, new FileOutputStream((estimateStyles.get("name") + ".pdf")));
+
+                        PdfWriter.getInstance(document, new FileOutputStream((new File(estimateStyles.get("name") + ".pdf"))));
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -149,6 +161,14 @@ public class GetSignature extends AppCompatActivity{
                     Chunk gutterGuards = new Chunk("Gutter Guards: "+  estimateQuantaties.get("gutterGuards"), font);
 
 
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    Image img = Image.getInstance(stream.toByteArray());
+
+                    img.scalePercent(150);
+
+
+
                     try {
                         Log.i("-----------------", "write to doc");
                         document.add(chunk);
@@ -185,6 +205,9 @@ public class GetSignature extends AppCompatActivity{
                         document.add(sidingStyleTwo);
                         document.add(sidingTwo);
                         document.add(gutterGuards);
+
+                        document.add(img);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
