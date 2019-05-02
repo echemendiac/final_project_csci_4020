@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -67,7 +68,7 @@ public class GetSignature extends AppCompatActivity{
         estimateQuantaties = (HashMap<String, Integer>) getIntent().getSerializableExtra("quant");
         estimateStyles = (HashMap<String, String>) getIntent().getSerializableExtra("styles");
 
-        fileName = directoryPath+estimateStyles.get("name") + ".pdf";
+
 
         sign_button = (Button) findViewById(R.id.sign_b);
         sign_button.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +105,7 @@ public class GetSignature extends AppCompatActivity{
                     try {
                         Log.i("-----------------", "gets path");
                         directoryPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/outputEstimates";
+                        fileName = directoryPath+estimateStyles.get("name") + ".pdf";
                         directory = new File(directoryPath);
 
                         if (!directory.exists()) {
@@ -219,6 +221,7 @@ public class GetSignature extends AppCompatActivity{
 
                     toast.show();
                     Log.i("Make Document","Created the document");
+                    sendEmail();
                     finish();
                     break;
                 }else{
@@ -313,6 +316,8 @@ public class GetSignature extends AppCompatActivity{
         return false;
     }
     public void sendEmail() {
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
         try {
             String email = estimateStyles.get("email"); // To line on email
             String subject = "Estimate";
@@ -324,13 +329,15 @@ public class GetSignature extends AppCompatActivity{
             final Uri uri = Uri.fromFile(new File(fileName));
             if (uri != null) {
                 emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                Log.i("Email", "Email should be sent");
+                Log.i("Email", "file is attached");
             } else
                 Log.i("Email", "File not found");
             emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
             this.startActivity(Intent.createChooser(emailIntent, "Sending email..."));
+            Log.i("Email", "Email should be sent");
 
         } catch (Throwable t) {
+            Log.i("Send Email", "Error Code: " + t.toString());
             Toast.makeText(this, "Request failed try again: " + t.toString(), Toast.LENGTH_LONG).show();
         }
     }
