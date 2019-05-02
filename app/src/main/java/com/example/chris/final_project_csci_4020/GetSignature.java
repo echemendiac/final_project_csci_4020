@@ -202,18 +202,19 @@ public class GetSignature extends AppCompatActivity{
                     }
 
                     document.close();
-                    Toast toast = Toast.makeText(GetSignature.this, "File Saved", Toast.LENGTH_SHORT);
-                    TextView textView = new TextView(GetSignature.this);
-//                    toast.setView(textView);
-//                    textView.setText("Error: Try to Login again");
-//                    textView.setBackgroundColor(Color.YELLOW);
-//                    textView.setTextColor(Color.RED);
+                    Toast toast = Toast.makeText(GetSignature.this, "File Saved", Toast.LENGTH_LONG);
+//                    TextView textView = new TextView(GetSignature.this);
+//                    toast.setView();
+//                    textView.setText("File Saved");
+//                    textView.setBackgroundColor(Color.WHITE);
+//                    textView.setTextColor(Color.BLACK);
+//                    textView.
 //                    textView.setTextSize(30);
 //                    textView.setPadding(20,20,20,20);
-                    finish();
+
                     toast.show();
                     Log.i("Make Document","Created the document");
-
+                    finish();
                     break;
                 }else{
                     Log.i("sign----------","PDF did not save. External Write permission was never granted");
