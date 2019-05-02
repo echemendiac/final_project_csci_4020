@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
@@ -37,6 +39,9 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class GetSignature extends AppCompatActivity{
+
+
+
     private SignaturePad sp;
     private  Button sign_button;
 
@@ -105,7 +110,7 @@ public class GetSignature extends AppCompatActivity{
                         PdfWriter.getInstance(document, new FileOutputStream((new File(estimateStyles.get("name") + ".pdf"))));
 
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        Log.i("Make Document", "File Not Found Error Code: " + e.toString());
                     }
 
                     Log.i("-----------------", "open doc");
@@ -213,6 +218,18 @@ public class GetSignature extends AppCompatActivity{
                     }
 
                     document.close();
+                    Toast toast = Toast.makeText(GetSignature.this, "File Saved", Toast.LENGTH_SHORT);
+                    TextView textView = new TextView(GetSignature.this);
+//                    toast.setView(textView);
+//                    textView.setText("Error: Try to Login again");
+//                    textView.setBackgroundColor(Color.YELLOW);
+//                    textView.setTextColor(Color.RED);
+//                    textView.setTextSize(30);
+//                    textView.setPadding(20,20,20,20);
+                    finish();
+                    toast.show();
+                    Log.i("Make Document","Created the document");
+
                     break;
                 }else{
                     Log.i("sign----------","PDF did not save. External Write permission was never granted");

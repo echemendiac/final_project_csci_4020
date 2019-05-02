@@ -295,6 +295,7 @@ public class CreateEstimate extends AppCompatActivity {
                 getSignature.putExtra("quant", estimateQuantaties);
                 getSignature.putExtra("styles", estimateStyles);
                 startActivity(getSignature);
+                finish();
             }
         });
     }
