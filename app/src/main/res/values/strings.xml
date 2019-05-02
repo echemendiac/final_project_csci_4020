@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">All Dry Estimates</string>
+    <string name="emailMessage">
+        Good Afternoon,\n\n
+        Your estimate is attached to this email. Download it to see.
+        Feel free to contact us at 865 405-7328
+        Sincerely,
+        Dylan Smith
+    </string>
 
     <string-array name="usernames">
         <item>Kiosk</item>

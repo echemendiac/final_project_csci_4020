@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -42,6 +43,7 @@ import java.util.HashMap;
 public class GetSignature extends AppCompatActivity{
 
 
+    private String fileName;
 
     private SignaturePad sp;
     private  Button sign_button;
@@ -64,6 +66,8 @@ public class GetSignature extends AppCompatActivity{
 
         estimateQuantaties = (HashMap<String, Integer>) getIntent().getSerializableExtra("quant");
         estimateStyles = (HashMap<String, String>) getIntent().getSerializableExtra("styles");
+
+        fileName = directoryPath+estimateStyles.get("name") + ".pdf";
 
         sign_button = (Button) findViewById(R.id.sign_b);
         sign_button.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +112,7 @@ public class GetSignature extends AppCompatActivity{
                         }
                         Log.i("-----------------", "make the pdf");
 
-                        PdfWriter.getInstance(document, new FileOutputStream((new File(directoryPath+estimateStyles.get("name") + ".pdf"))));
+                        PdfWriter.getInstance(document, new FileOutputStream((new File(fileName))));
 
                     } catch (Exception e) {
                         Log.i("Make Document", "File Not Found Error Code: " + e.toString());
@@ -200,6 +204,7 @@ public class GetSignature extends AppCompatActivity{
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
 
                     document.close();
                     Toast toast = Toast.makeText(GetSignature.this, "File Saved", Toast.LENGTH_LONG);
@@ -307,4 +312,27 @@ public class GetSignature extends AppCompatActivity{
         ActivityCompat.requestPermissions(activity, new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE }, REQUESTCODE_STORAGE_PERMISSION);
         return false;
     }
+    public void sendEmail() {
+        try {
+            String email = estimateStyles.get("email"); // To line on email
+            String subject = "Estimate";
+            String message = "" + R.string.emailMessage;
+            final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+            emailIntent.setType("plain/text");
+            emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{email});
+            emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+            final Uri uri = Uri.fromFile(new File(fileName));
+            if (uri != null) {
+                emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                Log.i("Email", "Email should be sent");
+            } else
+                Log.i("Email", "File not found");
+            emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
+            this.startActivity(Intent.createChooser(emailIntent, "Sending email..."));
+
+        } catch (Throwable t) {
+            Toast.makeText(this, "Request failed try again: " + t.toString(), Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
