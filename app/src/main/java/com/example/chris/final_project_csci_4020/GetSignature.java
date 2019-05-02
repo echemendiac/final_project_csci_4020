@@ -30,6 +30,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
@@ -107,7 +108,7 @@ public class GetSignature extends AppCompatActivity{
                         }
                         Log.i("-----------------", "make the pdf");
 
-                        PdfWriter.getInstance(document, new FileOutputStream((new File(estimateStyles.get("name") + ".pdf"))));
+                        PdfWriter.getInstance(document, new FileOutputStream((new File(directoryPath+estimateStyles.get("name") + ".pdf"))));
 
                     } catch (Exception e) {
                         Log.i("Make Document", "File Not Found Error Code: " + e.toString());
@@ -116,103 +117,86 @@ public class GetSignature extends AppCompatActivity{
                     Log.i("-----------------", "open doc");
                     document.open();
                     font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, BaseColor.BLACK);
-                    Chunk chunk = new Chunk(estimateStyles.get("name"), font);
-                    Chunk name = new Chunk("Name:" +  estimateStyles.get("name"), font);
-                    Chunk email = new Chunk("Email:" +  estimateStyles.get("email"), font);
-                    Chunk address = new Chunk("Address:" +  estimateStyles.get("address"), font);
-                    Chunk phone = new Chunk("Phone:"+  estimateStyles.get("phone"), font);
-                    Chunk city = new Chunk("City: " +  estimateStyles.get("city"), font);
-                    Chunk state = new Chunk("State: " +  estimateStyles.get("state"), font);
-                    Chunk zip = new Chunk("Zip: " +  estimateStyles.get("zip"), font);
-
-
-                    Chunk roofType = new Chunk("Roof Type:" +  estimateStyles.get("roofType"), font);
-                    Chunk roofColor = new Chunk("Roof Color:" +  estimateStyles.get("roofColor"), font);
-                    Chunk roofAmmount = new Chunk("Roof Squares:" +  estimateQuantaties.get("roofSqs"), font);
-
-                    Chunk tearOffAmount = new Chunk("Tear:" +  estimateQuantaties.get("tear"), font);
-                    Chunk caps = new Chunk("Caps:" +  estimateQuantaties.get("hip"), font);
-                    Chunk ridgeVents = new Chunk("Ridge Vents:" +  estimateQuantaties.get("ridge"), font);
-                    Chunk roofVents = new Chunk("Roof Vents:" +  estimateQuantaties.get("vents"), font);
-                    Chunk valley = new Chunk("Valley:" +  estimateQuantaties.get("valley"), font);
-
-
-                    Chunk flashingType = new Chunk("Flashing Type" +  estimateStyles.get("flashingType"), font);
-                    Chunk flashing = new Chunk("Flashing amount:" +  estimateStyles.get("chimeny"), font);
-
-                    Chunk shielding = new Chunk("Shielding:" +  estimateQuantaties.get("shield"), font);
-                    Chunk sheet = new Chunk("Sheet replacement:" +  estimateQuantaties.get("sheet"), font);
-                    Chunk pitch = new Chunk("Pitch:" +  estimateQuantaties.get("pitch"), font);
-                    Chunk stories = new Chunk("Stories:" +  estimateQuantaties.get("stories"), font);
-                    Chunk edge = new Chunk("Drip edge:" +  estimateQuantaties.get("drip"), font);
-
-
-                    Chunk sidingType = new Chunk("Siding Type" +  estimateStyles.get("sidingType"), font);
-                    Chunk sidingStyle = new Chunk("Siding Style"+  estimateStyles.get("sidingStyle"), font);
-                    Chunk sidingAmmounts = new Chunk("Siding Amount"+  estimateQuantaties.get("siding"), font);
-
-                    Chunk fascia = new Chunk("Fascia"+  estimateQuantaties.get("fascia"), font);
-
-
-                    Chunk gutterSize = new Chunk("Gutter Size" +  estimateStyles.get("gutterSize"), font);
-                    Chunk gutterStyle = new Chunk("Gutter Color"+  estimateStyles.get("gutterStyle"), font);
-                    Chunk gutterAmmount = new Chunk("Gutter Amount"+  estimateQuantaties.get("gutters"), font);
-
-
-                    Chunk sidingSize = new Chunk("Siding Size" + estimateStyles.get("sidingSize"), font);
-                    Chunk sidingStyleTwo = new Chunk("Siding Color"+  estimateStyles.get("sidingStyleTwo"), font);
-                    Chunk sidingTwo = new Chunk("Fascia: "+  estimateQuantaties.get("sidingTwo"), font);
-
-                    Chunk gutterGuards = new Chunk("Gutter Guards: "+  estimateQuantaties.get("gutterGuards"), font);
+                    Paragraph p1 = new Paragraph("Name: " +  estimateStyles.get("name"));
+                    Paragraph p2 = new Paragraph("Email: " +  estimateStyles.get("email"));
+                    Paragraph p3 = new Paragraph("Address: " +  estimateStyles.get("address"));
+                    Paragraph p4 = new Paragraph("Phone: "+  estimateStyles.get("phone"));
+                    Paragraph p5 = new Paragraph("City: " +  estimateStyles.get("city"));
+                    Paragraph p6 = new Paragraph("State: " +  estimateStyles.get("state"));
+                    Paragraph p7 = new Paragraph("Zip: " +  estimateStyles.get("zip"));
+                    Paragraph p8 = new Paragraph("Roof Type: " +  estimateStyles.get("roofType"));
+                    Paragraph p9 = new Paragraph("Roof Color: " +  estimateStyles.get("roofColor"));
+                    Paragraph p10 = new Paragraph("Roof Squares: " +  estimateQuantaties.get("roofSqs"));
+                    Paragraph p11 = new Paragraph("Tear: " +  estimateQuantaties.get("tear"));
+                    Paragraph p12 = new Paragraph("Caps: " +  estimateQuantaties.get("hip"));
+                    Paragraph p13 = new Paragraph("Ridge Vents: " +  estimateQuantaties.get("ridge"));
+                    Paragraph p14 = new Paragraph("Roof Vents: " +  estimateQuantaties.get("vents"));
+                    Paragraph p15 = new Paragraph("Valley: " +  estimateQuantaties.get("valley"));
+                    Paragraph p16 = new Paragraph("Flashing Type " +  estimateStyles.get("flashingType"));
+                    Paragraph p17 = new Paragraph("Flashing amount: " +  estimateStyles.get("chimeny"));
+                    Paragraph p18 = new Paragraph("Shielding: " +  estimateQuantaties.get("shield"));
+                    Paragraph p19 = new Paragraph("Sheet replacement: " +  estimateQuantaties.get("sheet"));
+                    Paragraph p20 = new Paragraph("Pitch: " +  estimateQuantaties.get("pitch"));
+                    Paragraph p21 = new Paragraph("Stories: " +  estimateQuantaties.get("stories"));
+                    Paragraph p22 = new Paragraph("Drip edge: " +  estimateQuantaties.get("drip"));
+                    Paragraph p23 = new Paragraph("Siding Type " +  estimateStyles.get("sidingType"));
+                    Paragraph p24 = new Paragraph("Siding Style "+  estimateStyles.get("sidingStyle"));
+                    Paragraph p25 = new Paragraph("Siding Amount "+  estimateQuantaties.get("siding"));
+                    Paragraph p26 = new Paragraph("Fascia "+  estimateQuantaties.get("fascia"));
+                    Paragraph p27 = new Paragraph("Gutter Size " +  estimateStyles.get("gutterSize"));
+                    Paragraph p28 = new Paragraph("Gutter Color "+  estimateStyles.get("gutterStyle"));
+                    Paragraph p29 = new Paragraph("Gutter Amount "+  estimateQuantaties.get("gutters"));
+                    Paragraph p30 = new Paragraph("Siding Size " + estimateStyles.get("sidingSize"));
+                    Paragraph p31 = new Paragraph("Siding Color "+  estimateStyles.get("sidingStyleTwo"));
+                    Paragraph p32 = new Paragraph("Fascia: "+  estimateQuantaties.get("sidingTwo"));
+                    Paragraph p33 = new Paragraph("Gutter Guards: "+  estimateQuantaties.get("gutterGuards"));
 
 
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
                     Image img = Image.getInstance(stream.toByteArray());
 
-                    img.scalePercent(150);
+                    img.scalePercent(10);
 
 
 
                     try {
                         Log.i("-----------------", "write to doc");
-                        document.add(chunk);
-                        document.add(name );
-                        document.add(email);
-                        document.add(address);
-                        document.add(phone);
-                        document.add(city);
-                        document.add(state);
-                        document.add(zip);
-                        document.add(roofType);
-                        document.add(roofColor);
-                        document.add(roofAmmount);
-                        document.add(tearOffAmount);
-                        document.add(caps);
-                        document.add(ridgeVents);
-                        document.add(roofVents);
-                        document.add(valley);
-                        document.add(flashingType);
-                        document.add(flashing);
-                        document.add(shielding);
-                        document.add(sheet);
-                        document.add(pitch);
-                        document.add(stories);
-                        document.add(edge);
-                        document.add(sidingType);
-                        document.add(sidingStyle);
-                        document.add(sidingAmmounts);
-                        document.add(fascia);
-                        document.add(gutterSize);
-                        document.add(gutterStyle);
-                        document.add(gutterAmmount);
-                        document.add(sidingSize);
-                        document.add(sidingStyleTwo);
-                        document.add(sidingTwo);
-                        document.add(gutterGuards);
+                        document.add(p1);
+                        document.add(p2);
+                        document.add(p3);
+                        document.add(p4);
+                        document.add(p5);
+                        document.add(p6);
+                        document.add(p7);
+                        document.add(p8);
+                        document.add(p9);
+                        document.add(p10);
+                        document.add(p11);
+                        document.add(p12);
+                        document.add(p13);
+                        document.add(p14);
+                        document.add(p15);
+                        document.add(p16);
+                        document.add(p17);
+                        document.add(p18);
+                        document.add(p19);
+                        document.add(p20);
+                        document.add(p21);
+                        document.add(p22);
+                        document.add(p23);
+                        document.add(p24);
+                        document.add(p25);
+                        document.add(p26);
+                        document.add(p27);
+                        document.add(p28);
+                        document.add(p29);
+                        document.add(p30);
+                        document.add(p31);
+                        document.add(p32);
+                        document.add(p33);
 
                         document.add(img);
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
