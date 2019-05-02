@@ -191,6 +191,7 @@ public class GetSignature extends AppCompatActivity{
                     }
 
                     document.close();
+                    break;
                 }else{
                     Log.i("sign----------","PDF did not save. External Write permission was never granted");
                 }
