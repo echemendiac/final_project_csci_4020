@@ -45,8 +45,7 @@ public class GetSignature extends AppCompatActivity{
     private String directoryPath;
     private File directory;
     private static final int REQUESTCODE_STORAGE_PERMISSION = 999;
-
-
+    
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
